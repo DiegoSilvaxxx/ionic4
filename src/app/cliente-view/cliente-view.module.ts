@@ -5,23 +5,23 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CadastroDeClientePage } from './cadastro-de-cliente.page';
+import { ClienteViewPage } from './cliente-view.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: CadastroDeClientePage
+    component: ClienteViewPage
   }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    IonicModule,
     FormsModule,
+    IonicModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CadastroDeClientePage]
+  declarations: [ClienteViewPage]
 })
-export class CadastroDeClientePageModule {}
+export class ClienteViewPageModule {}

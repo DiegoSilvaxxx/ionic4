@@ -15,8 +15,8 @@ export class CadastroDeClientePage implements OnInit {
 
 
   constructor(public formBuilder: FormBuilder,
-    public router: Router
-  ) {
+    public router: Router) {
+    
     this.formGroup = this.formBuilder.group({
       nome: [''],
       telefone: [''],

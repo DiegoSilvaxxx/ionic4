@@ -23,9 +23,16 @@
            
               <ion-card-subtitle>{{cliente?.email}}</ion-card-subtitle>
               <ion-card-subtitle>{{cliente?.telefone}}</ion-card-subtitle>
+
             </ion-card-header>
+          
+            <ion-icon name="share-alt" (click)="viewCliente(cliente)"  size="large" ></ion-icon>
+     
+            <ion-icon name="trash" (click)="remove(cliente)" size="large" ></ion-icon>
+       
        
           </ion-card>
-     
+
+       
 
 </ion-content>
