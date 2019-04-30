@@ -5,13 +5,13 @@ import { Router } from '@angular/router';
 import { ToastController, LoadingController } from '@ionic/angular';
 
 
-
 @Component({
-  selector: 'app-cadastro-de-cliente',
-  templateUrl: './cadastro-de-cliente.page.html',
-  styleUrls: ['./cadastro-de-cliente.page.scss'],
+  selector: 'app-cadastro-de-mensagem',
+  templateUrl: './cadastro-de-mensagem.page.html',
+  styleUrls: ['./cadastro-de-mensagem.page.scss'],
 })
-export class CadastroDeClientePage implements OnInit {
+export class CadastroDeMensagemPage implements OnInit {
+
   firestore = firebase.firestore();
   settings = { timestampsInSnapshots: true };
   formGroup: FormGroup;
@@ -23,9 +23,9 @@ export class CadastroDeClientePage implements OnInit {
     public loadingController: LoadingController) {
 
     this.formGroup = this.formBuilder.group({
-      nome: [''],
-      telefone: [''],
-      email: [''],
+      titulo: [''],
+      texto: [''],
+      data: [''],
     })
 
   }
@@ -36,11 +36,11 @@ export class CadastroDeClientePage implements OnInit {
 
   cadastrar() {
     this.loading();
-    let ref = this.firestore.collection('cliente')
+    let ref = this.firestore.collection('mensagem')
     ref.add(this.formGroup.value)
       .then(() => {
         console.log('Cadastrado com sucesso');
-        this.router.navigate(['/list']);
+        this.router.navigate(['/lista-de-mensagens']);
         this.loadingController.dismiss();
       }).catch(() => {
         console.log('Erro ao cadastrar');

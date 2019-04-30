@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../model/cliente';
+import { Mensagem} from '../model/mensagem';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-lista-de-clientes',
-  templateUrl: './lista-de-clientes.page.html',
-  styleUrls: ['./lista-de-clientes.page.scss'],
+  selector: 'app-lista-de-mensagens',
+  templateUrl: './lista-de-mensagens.page.html',
+  styleUrls: ['./lista-de-mensagens.page.scss'],
 })
-export class ListaDeClientesPage implements OnInit {
+export class ListaDeMensagensPage implements OnInit {
 
-
-  listaDeClientes: Cliente[] = [];
+  listaDeMensagens: Mensagem[] = [];
   firestore = firebase.firestore()
   settings = { timestampsInSnapshots: true };
 
@@ -22,12 +22,12 @@ export class ListaDeClientesPage implements OnInit {
   }
 
   ngOnInit() {
-    this.listaDeClientes = [];
+    this.listaDeMensagens = [];
     this.getList();
   }
 
-  viewCliente(obj: Cliente) {
-    this.router.navigate(['/cliente-view', { 'cliente': obj.id }]);
+  viewMensagem(obj: Mensagem) {
+    this.router.navigate(['/atualiza-mensagem', { 'mensagem': obj.id }]);
 
 
   }
@@ -35,13 +35,13 @@ export class ListaDeClientesPage implements OnInit {
 
     this.loading();
 
-    var ref = firebase.firestore().collection("cliente");
+    var ref = firebase.firestore().collection("mensagem");
     ref.get().then(query => {
       query.forEach(doc => {
-        let c = new Cliente();
+        let c = new Mensagem();
         c.setDados(doc.data());
         c.id = doc.id;
-        this.listaDeClientes.push(c);
+        this.listaDeMensagens.push(c);
       });
 
       this.loadingController.dismiss();
@@ -49,11 +49,11 @@ export class ListaDeClientesPage implements OnInit {
 
   }
 
-  remove(obj: Cliente) {
-    var ref = firebase.firestore().collection("cliente");
+  remove(obj: Mensagem) {
+    var ref = firebase.firestore().collection("mensagem");
     ref.doc(obj.id).delete()
       .then(() => {
-        this.listaDeClientes = [];
+        this.listaDeMensagens = [];
         this.getList();
       }).catch(() => {
         console.log('Erro ao atualizar');

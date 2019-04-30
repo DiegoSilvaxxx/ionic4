@@ -18,11 +18,7 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
-    },
-    {
+
       title: 'Logoff',
       url: '/logoff',
       icon: 'logoff'
@@ -36,15 +32,25 @@ export class AppComponent {
       title: 'Cadastro de Clientes',
       url: '/cadastro-de-cliente',
       icon: 'book'
+    },
+    {
+      title: 'Lista de Mensagens',
+      url: '/lista-de-mensagens',
+      icon: 'book'
+    },
+    {
+      title: 'Cadastro de Mensagem',
+      url: '/cadastro-de-mensagem',
+      icon: 'book'
     }
   ];
-//
+  //
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private firebaseauth : AngularFireAuth,
-    private router : Router
+    private firebaseauth: AngularFireAuth,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -55,17 +61,17 @@ export class AppComponent {
       this.splashScreen.hide();
     });
     this.firebaseauth.authState
-    .subscribe(
-      user => {
-        if (user) {
-          this.router.navigate(['/list']);
+      .subscribe(
+        user => {
+          if (user) {
+            this.router.navigate(['/lista-de-clientes']);
           } else {
             this.router.navigate(['/home']);
           }
-      },
-      () => {
-        this.router.navigate(['/list']);
-      }
-    );
+        },
+        () => {
+          this.router.navigate(['/lista-de-clientes']);
+        }
+      );
   }
 }
